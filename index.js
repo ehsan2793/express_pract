@@ -35,6 +35,11 @@ app.get("/friends", (req, res) => {
   res.send(friends);
 });
 
+
+app.use((req,res,next) => {
+  console.log(`${req.method}, ${req.url}`)
+})
+
 app.get("/friends/:friendId", (req, res) => {
   const friendId = req.params.friendId;
   const friend = friends[friendId - 1];
