@@ -24,23 +24,25 @@ const friends = [
 ];
 
 app.use((req, res, next) => {
-  console.log(`${req.method}, ${req.url}`);
+  console.log(`${req.method}, 
+  ${req.url}`);
   next();
 });
 
 app.use(express.json());
 
 app.post("/friends", (req, res) => {
-  if (!req.body.name) return res.status(400).json(
-    {error: "you suck"}
-  );
+  if (!req.body.name)
+    return res.status(400).json({
+      error: "you suck",
+    });
   const newFriend = {
     name: req.body.name,
     id: friends.length,
   };
 
-  friends.push(newFriend)
-  res.status(200).json(newFriend)
+  friends.push(newFriend);
+  res.status(200).json(newFriend);
 });
 app.get("/", (req, res) => {
   res.send(`
