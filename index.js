@@ -1,6 +1,5 @@
 const express = require("express");
-
-const friendController = require("./controllers/friends.controller");
+const friendsRouter = require("./routes/friends.router");
 const messagesControlller = require("./controllers/messages.controller");
 
 const app = express();
@@ -23,9 +22,7 @@ app.get("/", (req, res) => {
     </ul>`);
 });
 
-app.post("/friends", friendController.postFriend);
-app.get("/friends", friendController.getAllFriends);
-app.get("/friends/:friendId", friendController.getFriend);
+app.use("/friends", friendsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${localhost}:${PORT}`);
